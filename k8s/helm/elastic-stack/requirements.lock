@@ -1,0 +1,12 @@
+dependencies:
+- name: elasticsearch
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 1.26.1
+- name: kibana
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 2.3.0
+- name: logstash
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  version: 1.8.0
+digest: sha256:7a6990926a832177bec6c97fc0165a7c185d8e20d84f50f2101a2166baae033b
+generated: 2019-05-07T23:20:54.7413264+02:00

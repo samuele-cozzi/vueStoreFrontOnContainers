@@ -1,0 +1,33 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ .Values.app.svc.catalogfullimport }}
+  labels:
+    app: {{ template "catalog-fullimport.name" . }}
+    chart: {{ template "catalog-fullimport.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  schedule: "0 12 * * *"
+  jobTemplate:
+    metadata:
+      labels:
+        app: {{ template "catalog-fullimport.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      template:
+        spec:
+          {{ if .Values.inf.registry -}}
+          imagePullSecrets:
+          - name: {{ .Values.inf.registry.secretName }}
+          {{- end }}
+          containers:
+            - name: {{ .Chart.Name }} 
+              image: "{{ template "fqdn-image" . }}:{{ .Values.image.tag }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              env:
+                - name: PATH_BASE
+                  value: {{ include "pathBase" . }}
+                - name: k8sname
+                  value: {{ .Values.clusterName }}
+          restartPolicy: Never

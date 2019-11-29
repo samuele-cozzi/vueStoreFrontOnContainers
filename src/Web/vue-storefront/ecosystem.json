@@ -1,0 +1,16 @@
+{
+  "apps": [
+    {
+      "name": "server",
+      "max_memory_restart": "4G",
+      "instances": "1",
+      "script": "./core/scripts/server.js",
+      "node_args": "--max_old_space_size=4096",
+      "log_date_format": "YYYY-MM-DD HH:mm:ss",
+      "ignore_watch": [
+        "core/build/config.json",
+        "node_modules"
+      ]
+    }
+  ]
+}

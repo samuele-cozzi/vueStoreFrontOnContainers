@@ -1,0 +1,25 @@
+replicaCount: 1
+
+image:
+  repository: microsoft/mssql-server-linux
+  tag: 2017-CU7
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 1433
+
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "2Gi"
+  limits:
+    cpu: "1000m"
+    memory: "2Gi"
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
